@@ -1,0 +1,1692 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/"
+     xml:base="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:untitled-ontology-5="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5">
+        <rdfs:comment>5 Rules:
+
+Rich Person: Each CustomerPerson who has more than 3 products in their VirtualCart is classified as a RichPerson.
+
+Cashierless Store: Each Store with a storeCode that starts with &quot;00&quot; is classified as a CashierlessStore.
+
+Store with Cashier: Each Store with a storeCode that starts with &quot;11&quot; is classified as a StoreWithCashier.
+
+Automated Checkout: If a CustomerPerson is in a CashierlessStore, their checkout is classified as AutomatedCheckout.
+
+Manual Checkout: If a CustomerPerson is in a StoreWithCashier, their checkout is classified as ManualCheckout.</rdfs:comment>
+        <rdfs:comment>Project: AMBIENT INTELLIGENCE - 80188 (Amazon Go)
+Name:   Mobina Alinaghian
+StudentNumber: 5905100</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#differentFrom -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#differentFrom">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasHardware -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasHardware">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#inStore -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#inStore">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ProductCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ProductCode">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#StoreCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#StoreCode">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#cashierCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#cashierCode">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#AutomatedCheckOut -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#AutomatedCheckOut">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Camera -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Camera">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Ceiling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Ceiling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasHardware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Camera"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#RichPerson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#RichPerson">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasHardware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhone -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhone">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#cashierlessStore -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#cashierlessStore">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#storeWithCashier -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#storeWithCashier">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Cashier1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Cashier1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:isCashierOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckout1"/>
+        <untitled-ontology-5:cashierCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">513</untitled-ontology-5:cashierCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Cashier2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Cashier2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:isCashierOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckout2"/>
+        <untitled-ontology-5:cashierCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">617</untitled-ontology-5:cashierCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Ceiling1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Ceiling1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Ceiling"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasHardware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Camera"/>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Customer1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Customer1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasSoftware rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhoneApp1"/>
+        <untitled-ontology-5:inStore rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Customer2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Customer2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasSoftware rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhoneApp2"/>
+        <untitled-ontology-5:inStore rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <untitled-ontology-5:ProductCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3718</untitled-ontology-5:ProductCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <untitled-ontology-5:ProductCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5176</untitled-ontology-5:ProductCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <untitled-ontology-5:ProductCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">6091</untitled-ontology-5:ProductCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckout1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckout1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasCashier rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Cashier1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckout2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckout2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasCashier rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Cashier2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <untitled-ontology-5:ProductCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1241</untitled-ontology-5:ProductCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <untitled-ontology-5:ProductCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1255</untitled-ontology-5:ProductCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <untitled-ontology-5:ProductCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1919</untitled-ontology-5:ProductCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+        <untitled-ontology-5:ProductCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1917</untitled-ontology-5:ProductCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SPhone1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SPhone1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhone"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasHardware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasHardware rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Shelf"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasHardware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasHardware rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhoneApp1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhoneApp1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdf:type>
+        <untitled-ontology-5:hasSoftware rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhoneApp2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhoneApp2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdf:type>
+        <untitled-ontology-5:hasSoftware rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+        <untitled-ontology-5:StoreCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0001</untitled-ontology-5:StoreCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+        <untitled-ontology-5:StoreCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1101</untitled-ontology-5:StoreCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+        <untitled-ontology-5:StoreCode rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0002</untitled-ontology-5:StoreCode>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasProduct rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery1"/>
+        <untitled-ontology-5:hasProduct rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery2"/>
+        <untitled-ontology-5:hasProduct rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-5:hasProduct rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood1"/>
+        <untitled-ontology-5:hasProduct rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Hardware"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasCashier"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CashierPerson"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#isCashierOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+    </owl:Class>
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Software"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Camera"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartPhone"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#WeightSensor"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CheckOut"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Furniture"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Product"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Technology"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery2"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Grocery3"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Mealkit2"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#PreparedFood2"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/c">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/p">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/vc">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item1">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item2">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item3">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/code">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>AutomatedCheckout</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#inStore"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/c"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#cashierlessStore"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#AutomatedCheckOut"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>ManualCheckout</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#CustomerPerson"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#inStore"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/c"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#storeWithCashier"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#ManualCheckOut"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>richPerson</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Person"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/p"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#SmartphoneApp"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/p"/>
+                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#VirtualCart"/>
+                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/vc"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasSoftware"/>
+                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/vc"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/vc"/>
+                                                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item1"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/vc"/>
+                                                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item2"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#hasProduct"/>
+                                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/vc"/>
+                                                                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item3"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom"/>
+                                                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item1"/>
+                                                                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item2"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom"/>
+                                                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item1"/>
+                                                                                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item3"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom"/>
+                                                                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item2"/>
+                                                                                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/item3"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#RichPerson"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/p"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>CashierlessStore</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#StoreCode"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/code"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#startsWith"/>
+                                        <swrl:arguments>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/code"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first>00</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </swrl:arguments>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#cashierlessStore"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>storeWithCashier</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#Store"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#StoreCode"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/code"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#startsWith"/>
+                                        <swrl:arguments>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/code"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first>11</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </swrl:arguments>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5#storeWithCashier"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/administrator/ontologies/2024/9/untitled-ontology-5/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
