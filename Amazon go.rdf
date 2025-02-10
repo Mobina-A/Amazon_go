@@ -22,9 +22,6 @@ Store with Cashier: Each Store with a storeCode that starts with &quot;11&quot; 
 Automated Checkout: If a CustomerPerson is in a CashierlessStore, their checkout is classified as AutomatedCheckout.
 
 Manual Checkout: If a CustomerPerson is in a StoreWithCashier, their checkout is classified as ManualCheckout.</rdfs:comment>
-        <rdfs:comment>Project: AMBIENT INTELLIGENCE - 80188 (Amazon Go)
-Name:   Mobina Alinaghian
-StudentNumber: 5905100</rdfs:comment>
     </owl:Ontology>
     
 
