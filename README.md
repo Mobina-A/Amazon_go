@@ -24,8 +24,3 @@ To view and edit this ontology, you need an OWL ontology editor such as:
 - [Protégé](https://protege.stanford.edu/)
 - RDF-compatible semantic reasoning tools
 
-### How to Use
-1. Open the `.rdf` file in Protégé or an RDF editor.
-2. Analyze the defined OWL classes and SWRL rules.
-3. Modify or extend the ontology based on your needs.
-4. Use reasoning tools to infer classifications based on the predefined rules.
